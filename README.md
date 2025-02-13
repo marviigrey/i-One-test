@@ -5,3 +5,6 @@ Resource List:
 - 4 subnets(2 privates and 2 public )
 - Internet Gateway.
 - NACL
+- route tables
+- route table association
+- 
