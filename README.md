@@ -7,4 +7,7 @@ Resource List:
 - NACL
 - route tables
 - route table association
-- 
+- Nat Gateway
+- VPC endpoint:
+    - interface: AWS KMS service
+    - Gsteway: AWS S3
