@@ -1,2 +1,4 @@
-terraform.tfstate.d
+i-one-fe.pub
+i-one-fe
 terraform.lock.hcl
+./secrets/*
