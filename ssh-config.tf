@@ -1,8 +1,4 @@
-resource "random_string" "i-one-suffix" {
-  length = 6
-  upper = false
-  special = false
-}
+
 resource "tls_private_key" "ec2-bastion-host-key-pair" {
   algorithm = "RSA"
   rsa_bits = 4096
@@ -25,6 +21,6 @@ resource "local_sensitive_file" "ec2-bastion-host-private-key" {
 }
 resource "aws_key_pair" "ec2-bastion-host-key" {
   depends_on = [local_file.ec2-bastion-host-public-key]
-  key_name = "i-one${random_string.i-one-suffix.id}"
+  key_name = "ec2-bastion-key-pair"
   public_key = tls_private_key.ec2-bastion-host-key-pair.public_key_openssh
 }
