@@ -20,3 +20,11 @@ variable "ec2-bastion-private-key-path" {
 variable "ec2-bastion-ingress-ip-1" {
   type = string
 }
+
+variable "frontend-public-key-path" {
+  type = string
+}
+
+variable "frontend-private-key-path" {
+  type = string
+}

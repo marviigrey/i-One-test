@@ -61,3 +61,27 @@ resource "aws_security_group" "i-one-frontend" {
   }
 
 }
+resource "tls_private_key" "frontend-key-pair" {
+  algorithm = "RSA"
+  rsa_bits = 4096
+}
+
+## Create the file for Public Key
+resource "local_file" "frontend-public-key" {
+  depends_on = [ tls_private_key.frontend-key-pair ]
+  content = tls_private_key.frontend-key-pair.public_key_openssh
+  filename = var.frontend-public-key-path
+}
+
+resource "local_sensitive_file" "frontend-private-key" {
+    depends_on = [ tls_private_key.frontend-key-pair ]
+    content = tls_private_key.frontend-key-pair.private_key_pem
+    file_permission = "0600"
+    filename = var.frontend-private-key-path
+}
+
+resource "aws_key_pair" "frontend-key" {
+  depends_on = [ local_file.frontend-public-key ]
+  key_name = "frontend-key-pair"
+  public_key = tls_private_key.frontend-key-pair.public_key_openssh
+}
