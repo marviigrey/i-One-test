@@ -1,5 +1,8 @@
 resource "aws_route_table" "i-one-test_public" {
   vpc_id = aws_vpc.main.id
+  tags = {
+    Name = "public-route-table"
+  }
 }
 
 # Separate route definition for public route table
