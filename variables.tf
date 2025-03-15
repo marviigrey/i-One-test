@@ -28,6 +28,15 @@ variable "frontend-public-key-path" {
 variable "frontend-private-key-path" {
   type = string
 }
+variable "aws_account_id" {
+  type = number
+}
+variable "aws_region" {
+  type = string
+}
+variable "secret_name" {
+  type = string
+}
 output "public_ip" {
   value = aws_instance.i-one-bastion.public_ip
 }

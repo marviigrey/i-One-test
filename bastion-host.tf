@@ -10,16 +10,12 @@ resource "aws_instance" "i-one-bastion" {
     delete_on_termination = true
     volume_type = "gp2"
     encrypted = true
-    tags = {
-      Name = "i-one-test"
-    }
+    tags = local.common_tags
   }
   credit_specification {
     cpu_credits = "standard"
   }
-  tags = {
-    Name = "i-one-test"
-  }
+  tags = local.common_tags
   lifecycle {
     ignore_changes = [ 
       associate_public_ip_address,
@@ -65,4 +61,12 @@ resource "aws_eip" "ec2-bastion-host-eip" {
 resource "aws_eip_association" "ec2-bastion-host-aws_eip_association" {
   instance_id = aws_instance.i-one-bastion.id
   allocation_id = aws_eip.ec2-bastion-host-eip.id
+}
+
+locals {
+  common_tags = {
+    Project = "i-One"
+    Environment = "test"
+    Name = "i-One-test"
+  }
 }
