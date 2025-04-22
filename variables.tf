@@ -17,10 +17,6 @@ variable "ec2-bastion-private-key-path" {
   type = string
 }
 
-variable "ec2-bastion-ingress-ip-1" {
-  type = string
-}
-
 variable "frontend-public-key-path" {
   type = string
 }
@@ -37,9 +33,4 @@ variable "aws_region" {
 variable "secret_name" {
   type = string
 }
-output "public_ip" {
-  value = aws_instance.i-one-bastion.public_ip
-}
-output "elastic-ip" {
-  value = aws_eip.ec2-bastion-host-eip
-}
+
