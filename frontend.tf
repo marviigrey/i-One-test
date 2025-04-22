@@ -58,7 +58,13 @@ resource "aws_security_group" "backend_sg" {
     protocol    = "-1"
     cidr_blocks = [aws_vpc.main.cidr_block]  # Restrict to VPC
   }
-
+ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = [aws_vpc.main.cidr_block]  # Allow SSH only from within VPC
+    # Alternative: cidr_blocks = ["0.0.0.0/0"]  # Allow SSH from anywhere (less secure)
+  }
   tags = {
     environment = "staging"
   }
